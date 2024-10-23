@@ -1,24 +1,23 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {useState} from 'react'
 // Import data and WeatherCard here
-const cities = require("./data.js")
-const WeatherCard = require("./components/WeatherCard.js")
-const Location = require("./components/Location.js")
-
-
+import cities from './data';
+import WeatherCard from './components/WeatherCard'
+import Location from './components/Location'
 
 function App() {
-    const [location, setLocation] = useState("New York City")
+    const [location,setLocation] = useState("New York City")
+
     return (
         <>
             <h1 className = "title">REACTIVE WEATHER</h1>
             <h3 className = "subtitle">Up to the minute weather news</h3>
+            <Location location={location} setLocation={setLocation} data={cities}/>
             <div className = "app">
-                {cities.map(city => (
-                    <WeatherCard data={city} />
-                ))};
-                <Location data={cities} location={location} setLocation={setLocation}/>
+                {cities.map((city,index) => (
+                    <WeatherCard key={index} data={city} />
+                ))}
             </div>
-            
         </>
     )
 }
